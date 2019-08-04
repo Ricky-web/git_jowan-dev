@@ -15,6 +15,25 @@ article {
   width: 1200px;
   height: 1000px;
   margin: 0 auto;
+  
+  .container {
+    background: gray;
+    padding: 25px 0;
+  
+    .slick {
+      background: orange;
+      width: 800px;
+      height: 400px;
+      margin: 0 auto;
+    }
+    
+    .text {
+      background: pink;
+      width: 800px;
+      height: 300px;
+      margin: 0 auto;
+    }
+  }
 }
 
 footer {
