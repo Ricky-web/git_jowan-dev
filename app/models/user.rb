@@ -6,4 +6,12 @@ class User < ApplicationRecord
          
   has_many :tweets
   
+  def email_required?
+    false
+  end
+  
+  def email_changed?
+    false
+  end
+  
 end
