@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JowanDev</title>
+    <title>Jowan-dev</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,7 +11,22 @@
 
   <body>
     <header>
-      header
+      <h2><a href="/">Jowan by Tweet</a></h2>
+      <ul class="user-btn">
+        <% if user_signed_in? %>
+          <li><%= current_user.nickname %><sapn>▼</sapn></li>
+          <ul class="user-menu">
+            <li><%= link_to 'LogOut', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'POST', new_tweet_path, method: :get %></li>
+          </ul>
+        <% else %>
+          <li>Guest<span>▼</span></li>
+          <ul class="guest-menu">
+            <li><%= link_to 'SignIn', new_user_session_path, method: :get %></li>
+            <li><%= link_to 'SignUp', new_user_registration_path, method: :get %></li>
+          </ul>
+        <% end %>
+      </ul>
     </header>
     <%= yield %>
     <footer>

@@ -5,20 +5,20 @@
 
   <div class="field">
     <%= f.label :nickname %><br>
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", style: "font-size: 25px", maxlength: 8 %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> ~ 30 characters)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", style: "font-size: 25px", maxlength: 30 %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "font-size: 25px", maxlength: 30 %>
   </div>
 
   <div class="actions">
@@ -26,4 +26,5 @@
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<%= link_to 'Sign in ?', new_user_session_path, method: :get %><br>
+<%= link_to 'Back to home', root_path, method: :get %>
