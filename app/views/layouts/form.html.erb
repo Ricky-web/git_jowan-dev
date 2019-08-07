@@ -10,8 +10,12 @@
   </head>
 
   <body>
-    <div class="devise-wrapper">
-      <span id="alert"><%= flash[:alert] %></span>
+    <div class="tweet-form-wrapper">
+      <% if flash[:alert] %>
+        <% flash[:alert].each do |value| %>
+          <span id="alert"><%= value %></span><br>
+        <% end %>
+      <% end %>
       <%= yield %>
       <p><small>© 2019 Jowan</small></p>
     </div>

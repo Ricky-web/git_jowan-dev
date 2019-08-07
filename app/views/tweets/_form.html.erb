@@ -1,0 +1,15 @@
+<%= form_for tweet, local: true do |f| %>
+ <div class="select-currency-field">
+    <%= f.label :currency_pair %><br>
+    <%= f.select :currency_pair, ["USDJPY", "GBPJPY", "EURJPY", "GBPUSD", "EURUSD", "Others"], :prompt => "Select" %><br>
+  </div>
+  <div class="images-field">
+    <%= f.label :images %><br>
+    <%= f.file_field :images, multiple: true %><br>
+  </div>
+  <div class="text-field">
+    <%= f.label :text %><br>
+    <%= f.text_area :text, style: "margin: 0px; width: 728px; height: 241px; max-width: 728px; min-width: 728px", value: tweet.text %><br>
+  </div>
+  <%= f.submit %>
+<% end %>

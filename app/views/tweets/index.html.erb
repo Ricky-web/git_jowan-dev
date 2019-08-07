@@ -1,12 +1,19 @@
 <article>
-  articl
-  <div class="container">
+  article
+  <span id="alert"><%= flash[:alert] %></span>
+  <% @tweets.each do |tweet| %>
+    <div class="container">
     div.container
-    <div class="slick">
-      div.slick
-    </div>
-    <div class="text">
-      div.text
-    </div>
-  </div>
+      <% if tweet.images.attached? %>
+        <div class="slick">
+          <% tweet.images.each do |image| %>
+            <%= image_tag image %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="text">
+        <%= simple_format(tweet.text) %>
+      </div>
+  　</div>
+  <% end %>
 </article>
