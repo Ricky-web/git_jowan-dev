@@ -3,10 +3,15 @@
   <span id="alert"><%= flash[:alert] %></span>
   <% @tweets.each do |tweet| %>
     <div class="container">
-    div.container
       <ul class="tweet-btn">
-        <li><%= link_to 'Edit', edit_tweet_path(tweet.id), method: :get %></li>
-        <li><%= link_to 'Delete', tweet_path(tweet.id), data: {confirm: "Do you want to delete?"}, method: :delete %></li>
+        <li>▼</li>
+        <ul>
+          <li><%= link_to 'Detail', tweet_path(tweet.id), method: :get %></li>
+          <% if current_user.id == tweet.user_id %>
+            <li><%= link_to 'Edit', edit_tweet_path(tweet.id), method: :get %></li>
+            <li><%= link_to 'Delete', tweet_path(tweet.id), data: {confirm: "Do you want to delete?"}, method: :delete %></li>
+          <% end %>
+        </ul>
       </ul>
       <% if tweet.images.attached? %>
         <div class="slick">
