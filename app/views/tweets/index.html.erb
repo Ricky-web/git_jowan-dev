@@ -4,6 +4,10 @@
   <% @tweets.each do |tweet| %>
     <div class="container">
     div.container
+      <ul class="tweet-btn">
+        <li><%= link_to 'Edit', edit_tweet_path(tweet.id), method: :get %></li>
+        <li><%= link_to 'Delete', tweet_path(tweet.id), data: {confirm: "Do you want to delete?"}, method: :delete %></li>
+      </ul>
       <% if tweet.images.attached? %>
         <div class="slick">
           <% tweet.images.each do |image| %>

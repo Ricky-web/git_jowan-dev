@@ -41,12 +41,21 @@ class TweetsController < ApplicationController
   end
   
   def update
-    Tweet.update(update_params)
+    tweet = Tweet.find(params[:id])
+    tweet.attributes = update_params
+    
+    if tweet.changed? && tweet.valid?
+      tweet.update(update_params)
+      redirect_to :root, alert: "Updated!"
+    else
+      redirect_to :root, alert: "Update failure!"
+    end
   end
   
   def destroy
     tweet = Tweet.find(params[:id])
     tweet.destroy
+    redirect_to :root, alert: "Deleted!"
   end
   
   private
