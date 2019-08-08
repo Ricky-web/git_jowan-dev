@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    user_profile = Tweet.find[:id]
+    user_profile = Tweet.find(params[:id])
     user_profile.update(update_params)
   end
   
