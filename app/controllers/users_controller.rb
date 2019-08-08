@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   def show
-    @user_profile = User.find(params[:id]).includes(:tweets)
+    @user_profile = User.find(params[:id]).tweets
   end
   
   def edit
