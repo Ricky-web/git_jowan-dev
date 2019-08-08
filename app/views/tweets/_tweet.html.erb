@@ -1,0 +1,31 @@
+<% tweets.each do |tweet| %>
+  <div class="container">
+    <div class="currency_pair">
+      <h2><%= tweet.currency_pair %></h2>
+    </div>
+    <ul class="tweet-btn">
+      <li>▼</li>
+      <ul>
+        <li><%= link_to 'Detail', tweet_path(tweet.id), method: :get %></li>
+        <% if user_signed_in? && current_user.id == tweet.user_id %>
+          <li><%= link_to 'Edit', edit_tweet_path(tweet.id), method: :get %></li>
+          <li><%= link_to 'Delete', tweet_path(tweet.id), data: {confirm: "Do you want to delete?"}, method: :delete %></li>
+        <% end %>
+      </ul>
+    </ul>
+    <% if tweet.images.attached? %>
+      <div class="slick">
+        <% tweet.images.each do |image| %>
+          <%= image_tag image %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="text">
+      <%= simple_format(tweet.text) %>
+    </div>
+    <div class="poster-nickname">
+      <small style="color: black;">Tweet by <a href="/" style="color: black; text-decoration: underline;"><%= tweet.user.nickname %></a></small><br>
+      <small style="color: black;">Created at <%= tweet.created_at %>, Updated_at <%= tweet.updated_at %></small>
+    </div>
+　</div>
+<% end %>

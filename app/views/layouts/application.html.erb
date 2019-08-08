@@ -24,7 +24,8 @@
 
   <body>
     <header>
-      <h2><a href="/">Jowan by Tweet</a></h2>
+      <span id="alert"><%= flash[:alert] %></span>
+      <h2 class="app-name"><a href="/">Jowan by Tweet</a></h2>
       <ul class="user-btn">
         <% if user_signed_in? %>
           <li><%= current_user.nickname %><sapn>▼</sapn></li>
@@ -44,7 +45,7 @@
     </header>
     <%= yield %>
     <footer>
-      footer
+      © 2019 Jowan
     </footer>
   </body>
 </html>

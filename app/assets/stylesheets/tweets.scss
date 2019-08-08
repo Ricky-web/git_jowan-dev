@@ -2,6 +2,7 @@ body, header, article, footer, ul, li, h2, a {
   color: white;
   margin: 0;
   padding: 0;
+  // font-family: sans-serif;
 }
 
 li {
@@ -30,6 +31,9 @@ header {
   background: #888888;
   height: 100px;
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
   
   .user-btn {
     width: 140px;
@@ -59,21 +63,35 @@ header {
 }
 
 article {
-  background: black;
   width: 1200px;
-  height: 1000px;
+  height: 100%;
   margin: 0 auto;
+  padding-top: 100px;
   
   .container {
-    background: gray;
+    background: #C2EEFF;
     padding: 25px 0;
+    margin: 10px;
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
+    border-radius: 6px;
+    
+    .currency_pair {
+      float: left;
+      width: 94px;
+      height: 30px;
+      margin-left: 40px;
+      
+      h2 {
+        color: black;
+      }
+    }
     
     .tweet-btn {
       float: right;
       width: 70px;
       margin-right: 65px;
       text-align: center;
-      box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
+      box-shadow: 5px 10px 20px #6495ED;
       &:hover {
         background: #B0C4DE;
       
@@ -93,10 +111,11 @@ article {
     }
     
     .slick {
-      background: orange;
+      background: white;
       width: 800px;
       height: 400px;
       margin: 0 auto;
+      box-shadow: 2px 2px 4px #6495ED;
       
       img {
         width: 800px;
@@ -106,18 +125,33 @@ article {
     }
     
     .text {
-      background: pink;
+      background: white;
       width: 800px;
       height: 300px;
       margin: 0 auto;
+      box-shadow: 2px 2px 4px #6495ED;
+      color: black;
+    }
+  }
+  
+  .poster-nickname {
+    margin: 10px auto 0;
+    text-align: center;
+    color: black;
+    
+    a {
+      text-decoration: underline;
     }
   }
 }
 
 footer {
-  background: gray;
+  background: #333333;
   height: 50px;
   width: 100%;
+  margin-top: 50px;
+  text-align: center;
+  line-height: 50px;
 }
 
 .devise-wrapper {
