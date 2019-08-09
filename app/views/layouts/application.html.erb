@@ -25,7 +25,7 @@
   <body>
     <header>
       <span id="alert"><%= flash[:alert] %></span>
-      <h2 class="app-name"><a href="/">Jowan by Tweet</a></h2>
+      <h2 class="app-name"><%= link_to 'Jowan by Tweet', root_path, method: :get %></h2>
       <ul class="user-btn">
         <% if user_signed_in? %>
           <li><%= current_user.nickname %><sapn>▼</sapn></li>

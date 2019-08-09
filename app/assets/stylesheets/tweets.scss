@@ -1,4 +1,4 @@
-body, header, article, footer, ul, li, h2, a, label, p{
+body, header, article, footer, ul, li, h2, a, label {
   color: white;
   margin: 0;
   padding: 0;
@@ -128,11 +128,8 @@ article {
       background: white;
       width: 800px;
       height: 300px;
-      margin: 20px auto 0;
+      margin: 0 auto;
       box-shadow: 2px 2px 4px #6495ED;
-    }
-    
-    p {
       color: black;
     }
   }
@@ -242,8 +239,8 @@ footer {
     word-wrap: break-word;
     
     p {
-      color: black;
       text-align: start;
+      margin: 0;
     }
   }
   
@@ -264,6 +261,10 @@ footer {
   
   .one-item {
     margin-top: 20px;
+    
+    textarea {
+      resize: vertical;
+    }
   }
 }
 
