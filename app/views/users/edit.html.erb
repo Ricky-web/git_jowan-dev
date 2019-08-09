@@ -1,0 +1,27 @@
+<div class="user-profile">
+  <%= form_for @user_profile do |f| %>
+    <div class="one-item">
+      <%= f.label :nickname %><br>
+      <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", maxlength: 8 %><br>
+    </div>
+    <div class="one-item">
+      <%= f.label :age %><br>
+      <%= f.text_field :age, type: "tel", maxlength: 3 %><br>
+    </div>
+    <div class="one-item">
+      <%= f.label :gender %><br>
+      <%= f.select :gender, ["Male", "Female"], :prompt => "Select" %><br>
+    </div>
+    <div class="one-item">
+      <%= f.label :nationality %><br>
+      <%= f.select :nationality, ["JP", "US", "Others"], :prompt => "Select" %><br>
+    </div>
+    <div class="one-item">
+      <%= f.label :self_introduction %><br>
+      <%= f.text_area :self_introduction, style: "min-width: 800px; max-width: 800px; min-height: 300px; font-size: 18px;" %><br>
+    </div>
+      <%= f.submit 'Update', data: {confirm: "Do you want to update your profile?"} %>
+  <% end %>
+</div>
+
+  

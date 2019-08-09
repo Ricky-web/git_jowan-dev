@@ -1,0 +1,22 @@
+<div class="user-profile">
+  <% if user_signed_in? && current_user.id == @user_profile.id %>
+    <%= link_to 'Edit', edit_user_path(@user_profile.id), method: :get %>
+  <% end %>
+  <h2>~Profile~</h2><br>
+  <label>Nickname</label><br>
+  <div class="field" style="width: 130px;"><%= @user_profile.nickname %></div><br>
+  <label>Age</label><br>
+  <div class="field" style="width: 130px; height: 28.15px;"><%= @user_profile.age %></div><br>
+  <label>Gender</label><br>
+  <div class="field" style="width: 130px; height: 28.15px;"><%= @user_profile.gender %></div><br>
+  <label>Nationality</label><br>
+  <div class="field" style="width: 130px; height: 28.15px;"><%= @user_profile.nationality %></div><br>
+  <label>Self Introduction (Personality/Motto/Trading Style)</label><br>
+  <div class="field" style="width: 800px; min-height: 72.60px;"><%= simple_format(@user_profile.self_introduction) %></div><br>
+</div>
+<article class="user-tweets">
+  <h2>~Tweets by <%= @user_profile.nickname %>~</h2>
+  <%= paginate @user_tweets %>
+  <%= render partial: 'tweets/tweet', locals: {tweets: @user_tweets} %>
+  <%= paginate @user_tweets %>
+</article>

@@ -24,7 +24,7 @@
       <%= simple_format(tweet.text) %>
     </div>
     <div class="poster-nickname">
-      <small style="color: black;">Tweet by <a href="/" style="color: black; text-decoration: underline;"><%= tweet.user.nickname %></a></small><br>
+      <small style="color: black;">Tweet by <a href="/users/<%= tweet.user.id %>" style="color: black; text-decoration: underline;"><%= tweet.user.nickname %></a></small><br>
       <small style="color: black;">Created at <%= tweet.created_at %>, Updated_at <%= tweet.updated_at %></small>
     </div>
 　</div>
