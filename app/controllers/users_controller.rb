@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def update
     user_profile = User.find(params[:id])
     user_profile.update(update_params)
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(current_user.id), alert: "Updated your profile!"
   end
   
   private

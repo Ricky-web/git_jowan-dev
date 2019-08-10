@@ -1,3 +1,5 @@
 <article>
+  <%= paginate @tweets %>
   <%= render partial: 'tweet', locals: {tweets: @tweets} %>
+  <%= paginate @tweets %>
 </article>
