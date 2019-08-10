@@ -11,8 +11,39 @@ class UsersController < ApplicationController
   
   def update
     user_profile = User.find(params[:id])
-    user_profile.update(update_params)
-    redirect_to user_path(current_user.id), alert: "Updated your profile!"
+    flash[:alert] = []
+    
+    if user_profile.changed_profile?(update_params)
+      user_profile.update(update_params)
+      flash[:alert] << "Updated your profile!"
+      redirect_to user_path(current_user.id)
+    else
+      user_profile.attributes = update_params
+
+      if user_profile.valid?
+        flash[:alert] << "Nothing has changed..."
+      else
+        alerts = user_profile.errors.full_messages
+        
+        alerts.each do |alert|
+          flash[:alert] << "#{alert}"
+        end
+      end
+      
+      @user_profile = user_profile
+      
+      render "edit.html.erb", object: @user_profile
+    end
+      
+    
+    # user_profile.attributes = update_params
+    
+    # if user_profile.changed? && user_profile.valid?
+    #   user_profile.update(update_params)
+    #   redirect_to user_path(current_user.id), alert: "Updated your profile!"
+    # else
+    #   redirect_to edit_user_path(current_user.id), alert: "Update failure!"
+    # end
   end
   
   private
