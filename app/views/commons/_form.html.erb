@@ -1,4 +1,5 @@
-<%= form_for tweet, local: true do |f| %>
+<%= render partial: 'commons/flash', object: @tweet, object: flash %>
+<%= form_for @tweet, local: true do |f| %>
  <div class="select-currency-field">
     <%= f.label :currency_pair %><br>
     <%= f.select :currency_pair, ["USDJPY", "GBPJPY", "EURJPY", "GBPUSD", "EURUSD", "BTCJPY", "BTCUSD", "Others"], :prompt => "Select" %><br>
@@ -9,7 +10,7 @@
   </div>
   <div class="text-field">
     <%= f.label :text %><br>
-    <%= f.text_area :text, style: "margin: 0px; width: 728px; height: 241px; max-width: 728px; min-width: 728px", value: tweet.text %><br>
+    <%= f.text_area :text, style: "margin: 0px; width: 728px; height: 241px; max-width: 728px; min-width: 728px", value: @tweet.text %><br>
   </div>
   <%= f.submit "Submit", data: {confirm: "Do you want to submit?"} %><br>
   <small><%= link_to 'Back to home', root_path, method: :get %></small>

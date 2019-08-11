@@ -24,11 +24,6 @@
 
   <body>
     <header>
-      <% if flash[:alert] %>
-        <% flash[:alert].each do |alert| %>
-          <span id="alert"><%= alert %></span>
-        <% end %>
-      <% end %>
       <h2 class="app-name"><%= link_to 'Jowan by Tweet', root_path, method: :get %></h2>
       <ul class="user-btn">
         <% if user_signed_in? %>

@@ -1,0 +1,21 @@
+<% unless flash.empty? %>
+  <% flash.each do |key, message| %>
+    <div class="alert alert-<%= message %>">
+      <span id="alert"><%= message %></span>
+    </div>
+  <% end %>
+<% end %>
+<% if @tweet && @tweet.errors.any? %>
+  <% @tweet.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <span id="alert"><%= message %></span>
+    </div>
+  <% end %>
+<% end %>
+<% if @user_profile && @user_profile.errors.any? %>
+  <% @user_profile.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <span id="alert"><%= message %></span>
+    </div>
+  <% end %>
+<% end %>

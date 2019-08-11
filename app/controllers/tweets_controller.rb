@@ -7,24 +7,14 @@ class TweetsController < ApplicationController
   end
   
   def create
-    tweet = Tweet.new(update_params)
+    @tweet = Tweet.new
+    @tweet.attributes = update_params
     
-    if tweet.valid?
+    if @tweet.valid?
       Tweet.create(update_params)
-      redirect_to :root
+      redirect_to :root, :alert => "Created your tweet!"
     else
-      @tweet = Tweet.new
-      @tweet.text = update_params[:text]
-      
-      alerts = tweet.errors.full_messages
-      flash.now[:alert] = []
-      
-      alerts.each do |alert|
-        flash.now[:alert] << "#{alert}"
-      end
-      
-      render "new.html.erb", 
-      locals: {tweet: @tweet}, layout: 'form'
+      render "edit.html.erb", object: @tweet, layout: 'form'
     end
   end
   
@@ -41,21 +31,23 @@ class TweetsController < ApplicationController
   end
   
   def update
-    tweet = Tweet.find(params[:id])
-    tweet.attributes = update_params
+    @tweet = Tweet.find(params[:id])
+    @tweet.attributes = update_params
     
-    if tweet.changed? && tweet.valid?
-      tweet.update(update_params)
-      redirect_to :root, alert: "Updated!"
+    if @tweet.changed? && @tweet.valid?
+      @tweet.update(update_params)
+      redirect_to :root, :notice => "Updated! your tweet!"
     else
-      redirect_to :root, alert: "Update failure!"
+      flash[:message] = "Nothing has changed..."
+      render 'edit', object: @tweet, layout: 'form'
     end
   end
   
   def destroy
     tweet = Tweet.find(params[:id])
     tweet.destroy
-    redirect_to :root, alert: "Deleted!"
+    flash[:message] = "Deleted!"
+    redirect_to :root
   end
   
   private
@@ -67,7 +59,8 @@ class TweetsController < ApplicationController
     if user_signed_in?
       true
     else
-      redirect_to new_user_session_path, alert: "If you want to create your tweet, please sign in!"
+      flash[:alert] = "If you want to create your tweet, please sign in!"
+      redirect_to new_user_session_path
     end
   end
 end

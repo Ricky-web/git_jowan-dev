@@ -10,29 +10,21 @@ class UsersController < ApplicationController
   end
   
   def update
-    user_profile = User.find(params[:id])
-    flash[:alert] = []
+    @user_profile = User.find(params[:id])
     
-    if user_profile.changed_profile?(update_params)
-      user_profile.update(update_params)
-      flash[:alert] << "Updated your profile!"
+    if @user_profile.changed_profile?(update_params) && @user_profile.valid?
+      @user_profile.update(update_params)
+      flash[:message] = "Updated your profile!"
       redirect_to user_path(current_user.id)
     else
-      user_profile.attributes = update_params
+      @user_profile.attributes = update_params
 
-      if user_profile.valid?
-        flash[:alert] << "Nothing has changed..."
+      if @user_profile.valid?
+        flash.now[:message] = "Nothing has changed..."
+        render "edit.html.erb", object: @user_profile
       else
-        alerts = user_profile.errors.full_messages
-        
-        alerts.each do |alert|
-          flash[:alert] << "#{alert}"
-        end
+        render "edit.html.erb", object: @user_profile
       end
-      
-      @user_profile = user_profile
-      
-      render "edit.html.erb", object: @user_profile
     end
       
     

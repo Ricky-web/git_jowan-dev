@@ -1,4 +1,5 @@
 <div class="user-profile">
+  <%= render partial: 'commons/flash', object: @user_profile, object: flash %>
   <%= form_for @user_profile, locals: true do |f| %>
     <div class="one-item">
       <%= f.label :nickname %><br>

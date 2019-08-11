@@ -1,4 +1,5 @@
 <div class="user-profile">
+  <%= render partial: 'commons/flash' %>
   <% if user_signed_in? && current_user.id == @user_profile.id %>
     <%= link_to 'Edit', edit_user_path(@user_profile.id), method: :get %>
   <% end %>
@@ -17,6 +18,6 @@
 <article class="user-tweets">
   <h2>~Tweets by <%= @user_profile.nickname %>~</h2>
   <%= paginate @user_tweets %>
-  <%= render partial: 'tweets/tweet', locals: {tweets: @user_tweets} %>
+  <%= render partial: 'commons/tweet', locals: {tweets: @user_tweets} %>
   <%= paginate @user_tweets %>
 </article>
