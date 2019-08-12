@@ -1,6 +1,6 @@
 <article>
   <%= render partial: 'commons/flash', object: flash %>
-  <%= paginate @tweets %>
+  <%= paginate @tweets, turbolinks: false %>
   <%= render partial: 'commons/tweet', locals: {tweets: @tweets} %>
   <%= paginate @tweets %>
 </article>
