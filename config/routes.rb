@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   root 'tweets#index'
   
   resources :users, only: [:show, :edit, :update]
+  
+  get '/box/new' => 'opinions#new'
 end
