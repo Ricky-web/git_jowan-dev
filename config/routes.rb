@@ -5,8 +5,11 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   
-  resources :tweets
   root 'tweets#index'
+  
+  resources :tweets do
+    resources :comments, only: [:new, :create]
+  end
   
   resources :users, only: [:show, :edit, :update]
   
