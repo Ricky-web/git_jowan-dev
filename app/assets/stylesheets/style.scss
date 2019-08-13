@@ -25,7 +25,8 @@ h2 {
   background: white;
   color: red;
   animation: blink 1s 3;
-  text-align: center;
+  display: block;
+  margin: 0 auto;
 }
 
 header {
@@ -39,7 +40,7 @@ header {
   .app-name {
     width: 165px;
     height: 100px;
-    margin-left: 30px;
+    margin: 0 auto;
     
     a {
       line-height: 100px;
