@@ -1,6 +1,7 @@
 class Tweet < ApplicationRecord
   
   belongs_to :user
+  has_many :comments
   has_many_attached :images
   
   [:currency_pair, :images, :text].each do |v|

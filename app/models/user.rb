@@ -11,6 +11,8 @@ class User < ApplicationRecord
          :authentication_keys => [:nickname]
          
   has_many :tweets
+  has_many :comments
+  has_many :commented_tweets, through: :comments, source: :tweet
   
   validates :nickname, 
   presence: true, uniqueness: true, 
