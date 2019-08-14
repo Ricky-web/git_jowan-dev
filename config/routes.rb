@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :tweets do
     resources :comments, only: [:new, :create]
+    resources :likes, only: [:create, :destroy]
   end
   
   resources :users, only: [:show, :edit, :update]
