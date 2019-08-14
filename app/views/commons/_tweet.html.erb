@@ -2,7 +2,17 @@
   <div class="container">
     <div class="tweet-title">
       <h2><span style="border-bottom: solid 1px gray;"><%= tweet.title %></span></h2>
-      <small style="color: black;"><time datetime="<%= tweet.updated_at %>">Updated at <%= tweet.updated_at %></time> by <%= link_to "#{tweet.user.nickname}", user_path(tweet.user_id), method: :get, style: "text-decoration: underline; color: black;" %></small>
+      <small style="color: black;">
+        📰<time datetime="<%= tweet.updated_at %>">Updated at <%= tweet.updated_at %></time> by <%= link_to "#{tweet.user.nickname}", user_path(tweet.user_id), method: :get, style: "text-decoration: underline; color: black;" %>
+      </small>
+      <div class="rate-box">
+        <% if current_user.already_liked?(tweet) %>
+          <small class="liked-users"><span><%= link_to '👍', "/tweets/#{tweet.id}/likes/#{tweet.likes.find_by(user_id: current_user.id).id}", method: :delete %></span>: <u><%= tweet.likes.count %> (You +1)</u></small>
+        <% else %>
+          <small class="liked-users"><span><%= link_to '👍', tweet_likes_path(tweet), method: :post %></span>: <u><%= tweet.likes.count %></u></small>
+        <% end %>
+        <small class="commented-users"><%= link_to '💬', '/', method: :get %>: <u><%= tweet.comments.count %></u></small>
+      </div>
     </div>
     <div class="currency_pair">
       <h3><%= tweet.currency_pair %></h3>
