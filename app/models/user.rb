@@ -37,6 +37,10 @@ class User < ApplicationRecord
     self.likes.exists?(tweet_id: tweet.id)
   end
   
+  def already_watched?(tweet)
+    self.views.exists?(tweet_id: tweet.id)
+  end
+  
   def email_required?
     false
   end
