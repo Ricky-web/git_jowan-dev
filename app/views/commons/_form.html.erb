@@ -1,6 +1,10 @@
 <%= render partial: 'commons/flash', object: @tweet, object: flash %>
 <%= form_for @tweet, local: true do |f| %>
- <div class="select-currency-field">
+  <div class="tweet-title">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="select-currency-field">
     <%= f.label :currency_pair %><br>
     <%= f.select :currency_pair, ["USDJPY", "GBPJPY", "EURJPY", "GBPUSD", "EURUSD", "BTCJPY", "BTCUSD", "Others"], :prompt => "Select" %><br>
   </div>

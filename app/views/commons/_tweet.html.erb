@@ -1,7 +1,11 @@
 <% tweets.each do |tweet| %>
   <div class="container">
+    <div class="tweet-title">
+      <h2><span style="border-bottom: solid 1px gray;"><%= tweet.title %></span></h2>
+      <small style="color: black;"><time datetime="<%= tweet.updated_at %>">Updated at <%= tweet.updated_at %></time> by <%= link_to "#{tweet.user.nickname}", user_path(tweet.user_id), method: :get, style: "text-decoration: underline; color: black;" %></small>
+    </div>
     <div class="currency_pair">
-      <h2><%= tweet.currency_pair %></h2>
+      <h3><%= tweet.currency_pair %></h3>
       <% unless tweet.currency_pair == "Others" %>
         <%= image_tag "#{tweet.currency_pair[0,3]}.png", class: "currency" %>
         <%= image_tag "#{tweet.currency_pair[3,6]}.png", class: "margin_currency" %>
@@ -28,8 +32,7 @@
       <%= simple_format(tweet.text) %>
     </div>
     <div class="poster-nickname">
-      <small style="color: black;">Tweet by <%= link_to "#{tweet.user.nickname}", user_path(tweet.user.id), method: :get, style: "color: black; text-decoration: underline;"%></small><br>
-      <small style="color: black;">Created at <%= tweet.created_at %>, Updated_at <%= tweet.updated_at %></small>
+      <small style="color: black;">Poster : <%= link_to "#{tweet.user.nickname}", user_path(tweet.user.id), method: :get, style: "color: black; text-decoration: underline;"%></small>
     </div>
 　</div>
 <% end %>
