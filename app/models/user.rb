@@ -32,6 +32,10 @@ class User < ApplicationRecord
     end
   end
   
+  def already_liked?(tweet)
+    self.likes.exists?(tweet_id: tweet.id)
+  end
+  
   def email_required?
     false
   end
