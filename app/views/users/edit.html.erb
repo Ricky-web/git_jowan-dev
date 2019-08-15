@@ -2,6 +2,11 @@
   <%= render partial: 'commons/flash', object: @user_profile, object: flash %>
   <%= form_for @user_profile, locals: true do |f| %>
     <div class="one-item">
+      <%= image_tag @user_profile.image %>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+    <div class="one-item">
       <%= f.label :nickname %><br>
       <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", maxlength: 8 %><br>
     </div>
