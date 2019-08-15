@@ -126,7 +126,7 @@ article {
         background-size: cover;
         position: absolute;
         top: 75px;
-        left: 90px;
+        left: 85px;
         box-shadow: 2px 2px 4px #6495ED
         }
       
@@ -165,6 +165,127 @@ article {
       width: 800px;
       height: 400px;
       margin: 0 auto;
+      box-shadow: 2px 2px 4px #6495ED;
+      
+      img {
+        width: 800px;
+        height: 400px;
+        object-fit: cover;
+      }
+    }
+    
+    .text {
+      background: white;
+      width: 800px;
+      height: 300px;
+      margin: 0 auto;
+      box-shadow: 2px 2px 4px #6495ED;
+      color: black;
+      font-family: sans-serif;
+    }
+  }
+  
+  .poster-nickname {
+    margin: 10px auto 0;
+    text-align: center;
+    color: black;
+    
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+#show {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 100px;
+  
+  .container {
+    background: #C2EEFF;
+    padding: 25px 0;
+    margin: 10px;
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
+    border-radius: 6px;
+    position: relative;
+    
+    .tweet-title {
+      width: 760px;
+      padding-left: 50px;
+      text-align: center;
+      overflow: hidden;
+      
+      .rate-box {
+        ul li {
+          display: inline-block;
+        }
+      }
+      
+      h2 {
+        font-size: 250%;
+        font-family: "Times New Roman";
+        text-align: center;
+        color: black;
+      }
+    }
+    
+    .currency-pair {
+      float: left;
+      margin-left: 30px;
+      
+      .currency {
+        width: 120px;
+        height: 80px;
+        background-size: cover;
+        box-shadow: 2px 2px 4px #6495ED
+      }
+      
+      .margin-currency {
+        width: 70px;
+        height: 47px;
+        background-size: cover;
+        position: absolute;
+        top: 95px;
+        left: 100px;
+        box-shadow: 2px 2px 4px #6495ED
+        }
+      
+      h3 {
+        text-align: center;
+        color: black;
+      }
+    }
+    
+    .tweet-btn {
+      float: right;
+      width: 70px;
+      margin-right: 65px;
+      text-align: center;
+      box-shadow: 5px 10px 20px #6495ED;
+      &:hover {
+        background: #B0C4DE;
+      
+        ul {
+          width: 70px;
+          display: inline-block;
+          
+          li:hover {
+            background: #6495ED;
+          }
+        }
+      }
+      
+      ul {
+        display: none;
+      }
+    }
+    
+    .slick {
+      background: white;
+      width: 800px;
+      height: 400px;
+      margin: 30px auto 0;
       box-shadow: 2px 2px 4px #6495ED;
       
       img {

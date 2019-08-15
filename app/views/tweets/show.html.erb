@@ -1,34 +1,60 @@
-<div class="container">
-  <div class="currency_pair">
-    <h2><%= @tweet.currency_pair %></h2>
-    <% unless @tweet.currency_pair == "Others" %>
-      <%= image_tag "#{@tweet.currency_pair[0,3]}.png", class: "currency" %>
-      <%= image_tag "#{@tweet.currency_pair[3,6]}.png", class: "margin_currency" %>
-    <% end %>
-  </div>
-  <ul class="tweet-btn">
-    <li>▼</li>
-    <ul>
-      <li><%= link_to 'Detail', tweet_path(@tweet.id), method: :get %></li>
-      <% if user_signed_in? && current_user.id == @tweet.user_id %>
-        <li><%= link_to 'Edit', edit_tweet_path(@tweet.id), method: :get %></li>
-        <li><%= link_to 'Delete', tweet_path(@tweet.id), data: {confirm: "Do you want to delete?"}, method: :delete %></li>
-      <% end %>
-    </ul>
-  </ul>
-  <% if @tweet.images.attached? %>
-    <div class="slick">
-      <% @tweet.images.each do |image| %>
-        <%= image_tag image %>
+<article id="show">
+  <div class="container">
+    <div class="currency-pair">
+      <h3><%= @tweet.currency_pair %></h3>
+      <% unless @tweet.currency_pair == "Others" %>
+        <%= image_tag "#{@tweet.currency_pair[0,3]}.png", class: "currency" %>
+        <%= image_tag "#{@tweet.currency_pair[3,6]}.png", class: "margin-currency" %>
       <% end %>
     </div>
-  <% end %>
-  <div class="text">
-    <%= simple_format(@tweet.text) %>
-  </div>
-  <div class="poster-nickname">
-    <small style="color: black;">Tweet by <%= link_to "#{@tweet.user.nickname}", user_path(@tweet.user.id), method: :get, style: "color: black; text-decoration: underline;"%></small><br>
-    <small style="color: black;">Created at <%= @tweet.created_at %>, Updated_at <%= @tweet.updated_at %></small>
-  </div>
-</div>
-<div class=""
+    <div class="tweet-title">
+      <h2>
+        <span style="border-bottom: solid 1px gray;">
+          <% if current_user.already_watched?(@tweet) %>
+            <%= link_to "#{@tweet.title}", tweet_path(@tweet.id), method: :get %>
+          <% else %>
+            <%= link_to "#{@tweet.title}", tweet_views_path(@tweet.id), method: :post %>
+          <% end %>
+        </span>
+      </h2>
+      <small style="color: black;">
+        📰<time datetime="<%= @tweet.updated_at %>">Updated at <%= @tweet.updated_at %></time> by <%= link_to "#{@tweet.user.nickname}", user_path(@tweet.user_id), method: :get, style: "text-decoration: underline; color: black;" %>
+      </small>
+      <div class="rate-box">
+        <% if current_user.already_liked?(@tweet) %>
+          <small class="liked-users"><span><%= link_to '👍', "/tweets/#{@tweet.id}/likes/#{@tweet.likes.find_by(user_id: current_user.id).id}", method: :delete %></span>: <u><%= @tweet.likes.count %> (You +1)</u></small>
+        <% else %>
+          <small class="liked-users"><span><%= link_to '👍', tweet_likes_path(@tweet), method: :post %></span>: <u><%= @tweet.likes.count %></u></small>
+        <% end %>
+        <small class="commented-users"><%= link_to '💬', '/', method: :get %>: <u><%= @tweet.comments.count %></u></small>
+        <% if current_user.already_watched?(@tweet) %>
+          <small class="watched-counts">👁: <u><%= @tweet.views.count %> (You +1)</u></small>
+        <% else %>
+          <small class="watched-^counts">👁: <u><%= @tweet.views.count %></u></small>
+        <% end %>
+      </div>
+    </div>
+    <ul class="tweet-btn">
+      <li>▼</li>
+      <ul>
+        <% if user_signed_in? && current_user.id == @tweet.user_id %>
+          <li><%= link_to 'Edit', edit_tweet_path(@tweet.id), method: :get %></li>
+          <li><%= link_to 'Delete', tweet_path(@tweet.id), data: {confirm: "Do you want to delete?"}, method: :delete %></li>
+        <% end %>
+      </ul>
+    </ul>
+    <% if @tweet.images.attached? %>
+      <div class="slick">
+        <% @tweet.images.each do |image| %>
+          <%= image_tag image %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="text">
+      <%= simple_format(@tweet.text) %>
+    </div>
+    <div class="poster-nickname">
+      <small style="color: black;">Poster : <%= link_to "#{@tweet.user.nickname}", user_path(@tweet.user.id), method: :get, style: "color: black; text-decoration: underline;"%></small>
+    </div>
+　</div>
+</article>
