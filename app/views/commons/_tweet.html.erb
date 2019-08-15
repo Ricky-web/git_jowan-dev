@@ -1,48 +1,40 @@
 <% tweets.each do |tweet| %>
   <div class="container">
-    <div class="tweet-title">
-      <h2><span style="border-bottom: solid 1px gray;"><%= tweet.title %></span></h2>
-      <small style="color: black;">
-        📰<time datetime="<%= tweet.updated_at %>">Updated at <%= tweet.updated_at %></time> by <%= link_to "#{tweet.user.nickname}", user_path(tweet.user_id), method: :get, style: "text-decoration: underline; color: black;" %>
-      </small>
-      <div class="rate-box">
-        <% if current_user.already_liked?(tweet) %>
-          <small class="liked-users"><span><%= link_to '👍', "/tweets/#{tweet.id}/likes/#{tweet.likes.find_by(user_id: current_user.id).id}", method: :delete %></span>: <u><%= tweet.likes.count %> (You +1)</u></small>
-        <% else %>
-          <small class="liked-users"><span><%= link_to '👍', tweet_likes_path(tweet), method: :post %></span>: <u><%= tweet.likes.count %></u></small>
-        <% end %>
-        <small class="commented-users"><%= link_to '💬', '/', method: :get %>: <u><%= tweet.comments.count %></u></small>
-      </div>
-    </div>
-    <div class="currency_pair">
+    <div class="currency-pair">
       <h3><%= tweet.currency_pair %></h3>
       <% unless tweet.currency_pair == "Others" %>
-        <%= image_tag "#{tweet.currency_pair[0,3]}.png", class: "currency" %>
-        <%= image_tag "#{tweet.currency_pair[3,6]}.png", class: "margin_currency" %>
+        <%= image_tag "#{tweet.currency_pair[0, 3]}.png", class: "currency" %>
+        <%= image_tag "#{tweet.currency_pair[3, 6]}.png", class: "margin-currency" %>
       <% end %>
     </div>
-    <ul class="tweet-btn">
-      <li>▼</li>
-      <ul>
-        <li><%= link_to 'Detail', tweet_path(tweet.id), method: :get %></li>
-        <% if user_signed_in? && current_user.id == tweet.user_id %>
-          <li><%= link_to 'Edit', edit_tweet_path(tweet.id), method: :get %></li>
-          <li><%= link_to 'Delete', tweet_path(tweet.id), data: {confirm: "Do you want to delete?"}, method: :delete %></li>
-        <% end %>
-      </ul>
-    </ul>
-    <% if tweet.images.attached? %>
-      <div class="slick">
-        <% tweet.images.each do |image| %>
-          <%= image_tag image %>
-        <% end %>
+    <div class="tweet-title">
+      <h2>
+        <span style="border-bottom: solid 1px gray;">
+          <% if current_user.already_watched?(tweet) %>
+            <%= link_to "#{tweet.title}", tweet_path(tweet.id), method: :get %>
+          <% else %>
+            <%= link_to "#{tweet.title}", tweet_views_path(tweet.id), method: :post %>
+          <% end %>
+        </span>
+      </h2>
+      <small>
+        📰<time datetime="<%= tweet.updated_at %>">Updated at <%= tweet.updated_at %></time> by <%= link_to "#{tweet.user.nickname}", user_path(tweet.user.id), method: :get, style: "text-decoration: underline;" %>
+      </small>
+      <div class="rate-box">
+        <ul>
+          <% if current_user.already_liked?(tweet) %>
+            <li><small><%= link_to '👍', "/tweets/#{tweet.id}/likes/#{tweet.likes.find_by(user_id: current_user.id).id}", method: :delete %>: <u><%= tweet.likes.count %> (You +1)</u></small></li>
+          <% else %>
+            <li><small><%= link_to '👍', tweet_likes_path(tweet.id), method: :post %>: <u><%= tweet.likes.count %></u></small></li>
+          <% end %>
+          <li><small><%= link_to '💬', tweet_path(tweet.id), method: :get %>: <u><%= tweet.comments.count %></u></small></li>
+          <% if current_user.already_watched?(tweet) %>
+            <li><small>🔎: <u><%= tweet.views.count %> (You +1)</u></small></li>
+          <% else %>
+            <li><small>🔎: <u><%= tweet.views.count %></u></small></li>
+          <% end %>
+        </ul>
       </div>
-    <% end %>
-    <div class="text">
-      <%= simple_format(tweet.text) %>
     </div>
-    <div class="poster-nickname">
-      <small style="color: black;">Poster : <%= link_to "#{tweet.user.nickname}", user_path(tweet.user.id), method: :get, style: "color: black; text-decoration: underline;"%></small>
-    </div>
-　</div>
+  </div>
 <% end %>

@@ -92,35 +92,41 @@ article {
     position: relative;
     
     .tweet-title {
-      width: 800px;
-      margin: 0 auto;
-      padding-bottom: 25px;
-      text-align: center;
+      width: 760px;
+      padding-left: 50px;
+      text-align: left;
       overflow: hidden;
       
+      .rate-box {
+        ul li {
+          display: inline-block;
+        }
+      }
+      
       h2 {
-      color: black;
+        color: black;
+        text-align: left;
       }
     }
     
-    .currency_pair {
+    .currency-pair {
       float: left;
       margin-left: 30px;
       
       .currency {
-        width: 120px;
-        height: 80px;
+        width: 80px;
+        height: 50px;
         background-size: cover;
         box-shadow: 2px 2px 4px #6495ED
       }
       
-      .margin_currency {
-        width: 60px;
-        height: 40px;
+      .margin-currency {
+        width: 45px;
+        height: 30px;
         background-size: cover;
         position: absolute;
-        top: 170px;
-        left: 110px;
+        top: 75px;
+        left: 90px;
         box-shadow: 2px 2px 4px #6495ED
         }
       
