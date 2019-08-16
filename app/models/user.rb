@@ -23,7 +23,7 @@ class User < ApplicationRecord
   length: {maximum: 8}, format: { with: /\A[a-z0-9]+\z/i }
   
   validates :age,
-  numericality: {only_integer: true}
+  numericality: {only_integer: true}, on: :update
   
   def changed_profile?(update_params)
     self.attributes = update_params

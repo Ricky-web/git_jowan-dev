@@ -4,12 +4,6 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   
   <div class="field">
-    <%= image_tag "default.png" %>
-    <%= f.label :image %>
-    
-  </div>
-  
-  <div class="field">
     <%= f.label :nickname %><br>
     <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", style: "font-size: 25px", maxlength: 8 %>
   </div>
