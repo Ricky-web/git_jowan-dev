@@ -38,7 +38,11 @@
       </div>
     </div>
     <div class="tweet-poster">
-      <%= image_tag tweet.user.image, class: "poster-image" %><br>
+      <% if tweet.user.image.attached? %>
+        <%= image_tag tweet.user.image, class: "poster-image" %><br>
+      <% else %>
+        <%= image_tag "default.png", class: "poster-image" %>
+      <% end %>
       <small class="poster-name">Poster: <%= link_to "#{tweet.user.nickname}", user_path(tweet.user.id), method: :get, style: "border-bottom: solid 1px black;" %><span>↗</span></small>
     </div>
   </div>

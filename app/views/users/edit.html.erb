@@ -2,7 +2,11 @@
   <%= render partial: 'commons/flash', object: @user_profile, object: flash %>
   <%= form_for @user_profile, locals: true do |f| %>
     <div class="one-item">
-      <%= image_tag @user_profile.image %>
+      <% if @user_profile.image.attached? %>
+        <%= image_tag @user_profile.image %>
+      <% else %>
+        <%= image_tag "default.png" %>
+      <% end %>
       <%= f.label :image %>
       <%= f.file_field :image %>
     </div>

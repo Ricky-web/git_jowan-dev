@@ -25,7 +25,11 @@
   <body>
     <header>
       <h2 class="app-name"><%= link_to 'Jowan by Tweet', root_path, method: :get %></h2>
-      <%= image_tag current_user.image, class: "user-image" %>
+      <% if current_user.image.attached? %>
+        <%= image_tag current_user.image, class: "user-image" %>
+      <% else %>
+        <%= image_tag "default.png", class: "user-image" %>
+      <% end %>
       <ul class="user-btn">
         <% if user_signed_in? %>
           <li><%= current_user.nickname %><sapn>▼</sapn></li>
