@@ -19,20 +19,20 @@
         </span>
       </h2>
       <small>
-        📰<time datetime="<%= tweet.updated_at %>">Updated at <%= tweet.updated_at %></time> by <%= link_to "#{tweet.user.nickname}", user_path(tweet.user.id), method: :get, style: "text-decoration: underline;" %>
+        📰<time datetime="<%= tweet.updated_at %>">Updated at <%= tweet.updated_at %></time> by <%= link_to "#{tweet.user.nickname}", user_path(tweet.user.id), method: :get, style: "border-bottom: solid 0.5px black;" %>
       </small>
       <div class="rate-box">
         <ul>
           <% if current_user.already_liked?(tweet) %>
-            <li><small><%= link_to '👍', "/tweets/#{tweet.id}/likes/#{tweet.likes.find_by(user_id: current_user.id).id}", method: :delete %>: <u><%= tweet.likes.count %> (You +1)</u></small></li>
+            <li><small><%= link_to '👍', "/tweets/#{tweet.id}/likes/#{tweet.likes.find_by(user_id: current_user.id).id}", method: :delete %>: <span style="border-bottom: solid 0.5px black;"><%= tweet.likes.count %> (You +1)</span></small></li>
           <% else %>
-            <li><small><%= link_to '👍', tweet_likes_path(tweet.id), method: :post %>: <u><%= tweet.likes.count %></u></small></li>
+            <li><small><%= link_to '👍', tweet_likes_path(tweet.id), method: :post %>: <span style="border-bottom: solid 0.5px black;"><%= tweet.likes.count %></span></small></li>
           <% end %>
-          <li><small><%= link_to '💬', tweet_path(tweet.id), method: :get %>: <u><%= tweet.comments.count %></u></small></li>
+          <li><small><%= link_to '💬', tweet_path(tweet.id), method: :get %>: <span style="border-bottom: solid 0.5px;"><%= tweet.comments.count %></span></small></li>
           <% if current_user.already_watched?(tweet) %>
-            <li><small>🔎: <u><%= tweet.views.count %> (You +1)</u></small></li>
+            <li><small>👁: <span style="border-bottom: solid 0.5px black;"><%= tweet.views.count %> (You +1)</span></small></li>
           <% else %>
-            <li><small>🔎: <u><%= tweet.views.count %></u></small></li>
+            <li><small>👁: <span style="border-bottom: solid 0.5px black;"><%= tweet.views.count %></span></small></li>
           <% end %>
         </ul>
       </div>

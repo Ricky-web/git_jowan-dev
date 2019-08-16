@@ -147,9 +147,12 @@ article {
     }
     
     .tweet-poster {
+      width: 104px;
+      height: 93px;
       position: absolute;
       right: 30px;
       top: 20px;
+      text-align: center;
       
       .poster-image {
         width: 70px;
