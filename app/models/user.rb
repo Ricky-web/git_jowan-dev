@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :views
   has_many :liked_tweets, through: :likes, source: :tweet
+  has_one_attached :image
   
   validates :nickname, 
   presence: true, uniqueness: true, 

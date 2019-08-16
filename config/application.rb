@@ -17,3 +17,5 @@ module JowanDev
     # the framework and any gems in your application.
   end
 end
+
+Rails.application.config.assets.unknown_asset_fallback = true
