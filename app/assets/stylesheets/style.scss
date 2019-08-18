@@ -36,7 +36,7 @@ header {
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 9999;
+  z-index: 9998;
   
   .app-name {
     width: 165px;
@@ -49,46 +49,85 @@ header {
   }
   
   .user-image {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
+    border: solid 4px white;
     border-radius: 50%;
     object-fit: cover;
+    cursor: pointer;
+    cursor: hand;
     position: fixed;
-    top: 10px;
-    right: 70px;
-  }
-  
-  .user-btn {
-    width: 140px;
-    float: right;
-    text-align: center;
-    box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
-    position: fixed;
-    top: 65px;
-    right: 30px;
+    top: 6px;
+    right: 66px;
+    transition: transform 0.5s ease 0s, border 0.3s ease 0s;
+    z-index: 9999;
     &:hover {
-      background: #B0C4DE;
+      border: solid 4px #6495ED;
+    }
+  }
+    
+  .user-btn {
+    // display: none;
+    height: 88px;
+    width: 58px;
+    padding-right: 30px;
+    border-radius: 44px;
+    background: white;
+    display: block;
+    opacity: 1;
+    text-align: right;
+    position: fixed;
+    top: 6px;
+    // right: -280px;
+    right: 66px;
+    transition: width 0.5s ease 0s;
+    overflow: hidden;
+    
+    li {
+      display: none;
+      line-height: 88px;
+    }
+  }
+  // ------------------------------------
+  #user-image:checked {
+    ~.user-image {
+    transform: translateX(-320px);
+    }
+    
+    ~.user-btn {
+      // display: block;
+      // opacity: 1;
+      // transform: translateX(-330px);
+      width: 370px;
+      padding-right: 30px;
       
-      .user-menu, .guest-menu {
-        width: 140px;
+      li {
         display: inline-block;
-        background: #B0C4DE;
+        padding: 0 5px;
         
-        li:hover {
+        a {
+          // display: block;
+          padding : 4px;
+          border: solid 2px #C2EEFF;
+          border-radius: 4px;
+          background: #C2EEFF;
+          transition: background 0.5s ease 0s;
+          &:hover {
           background: #6495ED;
+          color: white;
+          }
         }
       }
     }
-    
-    .user-menu, .guest-menu {
-      width: 100px;
-      display: none;
-    }
+  }
+  // ------------------------------------
+  #user-image {
+    display: none;
   }
 }
 
 article {
-  width: 1200px;
+  width: 1000px;
   height: 100%;
   margin: 0 auto;
   padding-top: 100px;
@@ -100,6 +139,14 @@ article {
     box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
     border-radius: 6px;
     position: relative;
+    animation-name: SlideDown;
+    animation-duration: 2.5s;
+    animation-iteration-count: 1;
+    transition: background 0.5s ease 0s, transform 0.5s ease 0s;
+    &:hover {
+      background: #6495ED;
+      transform: translateX(-10px);
+    }
     
     .tweet-title {
       width: 760px;
@@ -157,6 +204,7 @@ article {
       .poster-image {
         width: 70px;
         height: 70px;
+        border: solid 2px white;
         border-radius: 50%;
         object-fit: cover;
       }
@@ -219,6 +267,17 @@ article {
     a {
       text-decoration: underline;
     }
+  }
+}
+
+@-webkit-keyframes SlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-300px);
+  }
+  
+  100% {
+    opacity: 1;
   }
 }
 

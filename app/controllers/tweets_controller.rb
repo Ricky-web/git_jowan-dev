@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
   before_action :user_confirm, only: [:new]
   
   def index
-    @tweets = Tweet.includes(:user).with_attached_images.order('updated_at DESC').page(params[:page]).per(5)
+    @tweets = Tweet.includes(:user).with_attached_images.order('updated_at DESC').page(params[:page]).per(10)
   end
   
   def create
